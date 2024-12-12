@@ -3,7 +3,7 @@ export default class User {
   uuid: string;
   name: string;
   lastName: string;
-  userName: string;
+  username: string;
   email: string;
   password: string;
 }
