@@ -7,13 +7,18 @@ import { Task } from '../../entities/Task';
 import { User } from '../../entities/User';
 
 export interface UserService {
-  getProfile(): Promise<User>;
-  getProjectsWhereIsMember(): Promise<Project[] | []>;
-  getOwnProjects(): Promise<Project[] | []>;
-  getAssignedTasks(): Promise<Task[] | []>;
-  updatePassword(oldPassword: string, newPassword: string): Promise<void>;
-  updateEmail(newEmail: string): Promise<void>;
+  getProfile(userUUID: string): Promise<User>;
+  getProjectsWhereIsMember(userUUID: string): Promise<Project[] | []>;
+  getOwnProjects(userUUID: string): Promise<Project[] | []>;
+  getAssignedTasks(userUUID: string): Promise<Task[] | []>;
+  updatePassword(
+    userUUID: string,
+    oldPassword: string,
+    newPassword: string,
+  ): Promise<void>;
+  updateEmail(userUUID: string, newEmail: string): Promise<void>;
   updateProfile(
+    userUUID: string,
     profileData: Partial<Pick<User, 'name' | 'lastName' | 'username'>>,
   ): Promise<void>;
   addTask(taskData: OmitBaseEntity<Task>): Promise<Task>;
