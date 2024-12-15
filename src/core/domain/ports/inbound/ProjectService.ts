@@ -1,12 +1,10 @@
-import Project from '~/core/domain/entities/Project';
+// ** Acciones que el dueño del proyecto puede realizar sobre el mismo
+
+import { Project } from '../../entities/Project';
 
 export interface ProjectService {
   getProjectByUUID(projectUUID: string): Promise<Project>;
-  getAllProjects(): Promise<Project[]>;
-  createProject(project: Omit<Project, 'id' | 'uuid'>): Promise<Project>;
-  updateProject(
-    projectUUID: string,
-    projectData: Partial<Project>,
-  ): Promise<Project>;
-  deleteProject(projectUUID: string): Promise<void>;
+  editProjectName(projectUUID: string): Promise<Project>;
+  assignNewOwner(projectUUID: string, newOwnerUUID: string): Promise<void>;
+  addMembers(projectUUID: string, membersUUID: string[]): Promise<void>;
 }

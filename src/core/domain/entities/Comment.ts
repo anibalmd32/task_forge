@@ -1,9 +1,8 @@
-import User from '~/core/domain/entities/User';
-import Task from '~/core/domain/entities/Task';
+import { BaseCoreEntity } from './BaseEntity';
+import { Task } from './Task';
+import { User } from './User';
 
-export default class Comment {
-  id: number;
-  uuid: string;
+export class Comment extends BaseCoreEntity {
   content: string;
   writtenBy: User;
   task: Task;

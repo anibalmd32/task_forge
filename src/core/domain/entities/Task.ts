@@ -1,11 +1,11 @@
-import User from '~/core/domain/entities/User';
-import Comment from '~/core/domain/entities/Comment';
-
-export default class Task {
-  id: number;
-  uuid: string;
+import { TaskStatus, TaskPriority } from '~/shared/types';
+import { BaseCoreEntity } from './BaseEntity';
+import { Comment } from './Comment';
+import { User } from './User';
+export class Task extends BaseCoreEntity {
   title: string;
-  status: number;
+  status: TaskStatus;
+  priority: TaskPriority;
   assignedTo: User;
   comments: Comment[];
 }

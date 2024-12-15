@@ -1,9 +1,15 @@
-import Task from '~/core/domain/entities/Task';
+//** Acciones que se puede realizar sobre las tareas por cualquier usuario */
+
+import { Task } from '../../entities/Task';
+import { TaskStatus, TaskPriority, PaginationParams } from '~/shared/types';
 
 export interface TaskService {
-  getTaskByUUID(taskUUID: string): Promise<Task>;
-  getAllTasks(): Promise<Task[]>;
-  createTask(taskData: Omit<Task, 'id' | 'uuid'>): Promise<Task>;
-  updateTask(taskUUID: string, taskData: Partial<Task>): Promise<Task>;
-  deleteTask(taskUUID: string): Promise<void>;
+  getByStatus(status: TaskStatus): Promise<Task[] | []>;
+  getByPriority(priority: TaskPriority): Promise<Task[] | []>;
+  getByUser(
+    userUUID: string,
+    pagination: PaginationParams,
+  ): Promise<Task[] | []>;
+  editTitile(taskUUID: string, newTitle: string): Promise<Task>;
+  editDescription(taskUUID: string, newDescription: string): Promise<Task>;
 }

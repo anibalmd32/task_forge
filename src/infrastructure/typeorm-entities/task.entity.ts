@@ -1,14 +1,7 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
 import { Base } from './base';
 import { UserEntity } from './user.entity';
-
-enum TaskStatus {
-  TO_DO = 1,
-  IN_PROGRESS = 2,
-  DONE = 3,
-  UNDER_REVIEW = 4,
-  APPROVE = 5,
-}
+import { TaskStatus, TaskPriority } from '~/shared/types';
 
 @Entity({ name: 'tasks' })
 export class TaskEntity extends Base {
@@ -21,6 +14,13 @@ export class TaskEntity extends Base {
     default: TaskStatus.TO_DO,
   })
   status: TaskStatus;
+
+  @Column('enum', {
+    name: 'priority',
+    enum: TaskPriority,
+    default: TaskPriority.NORMAL,
+  })
+  priority: TaskPriority;
 
   @ManyToOne(() => UserEntity, (user) => user.tasks)
   assignedTo: UserEntity;

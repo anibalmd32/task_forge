@@ -21,6 +21,9 @@ export class UserEntity extends Base {
   @Column('varchar', { name: 'username', unique: true })
   username: string;
 
+  @Column('text', { name: 'image_url', nullable: true })
+  imagenUrl: string;
+
   @OneToMany(() => ProjectEntity, (project) => project.owner)
   projectsOwner: ProjectEntity[];
 

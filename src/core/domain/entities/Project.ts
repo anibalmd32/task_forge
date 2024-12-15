@@ -1,8 +1,7 @@
-import User from '~/core/domain/entities/User';
+import { BaseCoreEntity } from './BaseEntity';
+import { User } from './User';
 
-export default class Project {
-  id: string;
-  uuid: string;
+export class Project extends BaseCoreEntity {
   name: string;
   owner: User;
   members: User[];
